@@ -1,0 +1,27 @@
+FROM eclipse-temurin:11-jre-jammy
+
+# Create user wiris and switch to it
+RUN useradd --create-home wiris
+USER wiris
+
+# Work into wiris user home directory.
+WORKDIR /home/wiris
+
+# Copy the kernel files.
+COPY --chown=wiris:wiris app/cas ./
+
+# Be sure OmegaKernel has execution rights
+RUN chmod a+x kernel/linux/OmegaKernel.exe
+
+# Disable logging. Some logs are anyway redirected to STDOUT.
+RUN mkdir logs && chmod 000 logs
+
+# Kernel server listens to port 31415
+EXPOSE 31415
+
+# Healthcheck command.
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD java -cp server com.wiris.test.TestCalculate
+
+# Set the container entry point to the startup script.
+ENTRYPOINT java -cp server Server

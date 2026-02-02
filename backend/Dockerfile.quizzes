@@ -1,0 +1,13 @@
+FROM tomcat:9.0
+
+# Copy all WARs into Tomcat
+COPY app/quizzes.war /usr/local/tomcat/webapps/quizzes.war
+
+# Copy quizzes configuration for communication with the kernel in docker network
+COPY configuration/quizzes.xml conf/Catalina/localhost/
+
+# Copy startup script
+COPY entrypoint.sh /opt/entrypoint.sh
+RUN chmod +x /opt/entrypoint.sh
+
+CMD ["/opt/entrypoint.sh"]

@@ -1,0 +1,24 @@
+services:
+  quizzes:
+    build:
+      context: .
+      dockerfile: Dockerfile.quizzes
+    container_name: quizzes
+    ports:
+      - "8080:8080"
+    depends_on:
+      - cas
+    networks:
+      - net
+  cas:
+    build:
+      context: .
+      dockerfile: Dockerfile.cas
+    ports:
+      - "31415:31415"
+    networks:
+      - net
+
+networks:
+  net:
+    driver: bridge

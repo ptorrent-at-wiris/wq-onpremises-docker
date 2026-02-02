@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WirisQuizzes demo</title>
+
+    <!-- Demo styles -->
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+    <main class="container">
+        <h1>WirisQuizzes on-premises demo</h1>
+        <p class="hint">Set a correct answer, and use the MathType editor for the student answer to test your solution
+        </p>
+
+        <h2>Correct answer</h2>
+        <div id="correct-answer"><span></span></div>
+
+        <h2>Student answer</h2>
+        <div id="student-answer"><span></span></div>
+        <button id="submit-button">Check answer</button>
+        <div id="result"></div>
+    </main>
+
+    <!-- WirisQuizzes generic integration script -->
+    <script src="./quizzes/resources/quizzes.js"></script>
+
+    <!-- Demo app and configuration -->
+    <script src="./app.js"></script>
+</body>
+
+</html>

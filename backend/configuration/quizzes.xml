@@ -1,0 +1,3 @@
+<Context path="/quizzes" crossContext="true">
+    <Parameter name="com.wiris.quizzes.wirishost" value="cas" override="false" />
+</Context>
